@@ -1,22 +1,28 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
 
-const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
+const users = require("./routes/api/users");
+const profile = require("./routes/api/profile");
+const posts = require("./routes/api/posts");
 
 const app = express();
 
-const db = require('./config/keys').mongoURI;
+//db
+const db = require("./config/keys").mongoURI;
 
-mongoose.connect(db).then(() => console.log('MongoDB Connected')).catch((err) => console.log(err));
+//to MongoDB
+mongoose
+  .connect(db)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
-app.get('/', (req, res) => res.send('Hello World'));
+app.get("/", (req, res) => res.send("Hello World"));
 
-app.use('/api/users', users);
-app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+//routes
+app.use("/api/users", users);
+app.use("/api/profile", profile);
+app.use("/api/posts", posts);
 
-const port = 5001;
+const port = process.env.PORT || 5001;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
