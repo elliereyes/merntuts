@@ -8,7 +8,7 @@ const User = require("../../models/User");
 
 //route to /api/users/test
 router.get("/test", (req, res) => res.json({ msg: "Users works" }));
-
+//just to commit
 //route to /api/users/register
 router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email }).then(user => {
